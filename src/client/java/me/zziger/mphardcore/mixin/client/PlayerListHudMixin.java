@@ -7,6 +7,7 @@ import me.zziger.mphardcore.Heart;
 import me.zziger.mphardcore.MultiplayerHardcoreClient;
 import me.zziger.mphardcore.MultiplayerHardcoreConfig;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.hud.PlayerListHud;
@@ -74,19 +75,19 @@ public class PlayerListHudMixin {
             Identifier identifier = bl ? CONTAINER_HEART_BLINKING_TEXTURE : CONTAINER_HEART_TEXTURE;
 
             for (l = heartCount; l < heartBgCount; ++l) {
-                context.drawGuiTexture(identifier, left + l * k, y, 9, 9);
+                context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, identifier, left + l * k, y, 9, 9);
             }
 
             for (l = 0; l < heartCount; ++l) {
-                context.drawGuiTexture(identifier, left + l * k, y, 9, 9);
+                context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, identifier, left + l * k, y, 9, 9);
                 if (bl) {
                     if (l < heart.getPrevScore()) {
-                        context.drawGuiTexture(FULL_HEART_BLINKING_TEXTURE, left + l * k, y, 9, 9);
+                        context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, FULL_HEART_BLINKING_TEXTURE, left + l * k, y, 9, 9);
                     }
                 }
 
                 if (l < score) {
-                    context.drawGuiTexture(FULL_HEART_TEXTURE, left + l * k, y, 9, 9);
+                    context.drawGuiTexture(RenderPipelines.GUI_TEXTURED, FULL_HEART_TEXTURE, left + l * k, y, 9, 9);
                 }
             }
 
